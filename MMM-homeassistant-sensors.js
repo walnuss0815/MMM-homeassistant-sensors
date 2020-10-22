@@ -339,7 +339,7 @@ Module.register("MMM-homeassistant-sensors", {
 		column++;
 		newCell = newrow.insertCell(column);
 		if (datedata !== "") {
-			newCell.className = "ha-date";
+			newCell.className = "ha-date bright";
 			newText = document.createTextNode(datedata);
 			newCell.appendChild(newText);
 		} else {
@@ -350,7 +350,7 @@ Module.register("MMM-homeassistant-sensors", {
 		column++;
 		newCell = newrow.insertCell(column);
 		if (timedata !== "") {
-			newCell.className = "ha-time";
+			newCell.className = "ha-time bright";
 			newText = document.createTextNode(timedata);
 			newCell.appendChild(newText);
 		} else {
@@ -369,7 +369,7 @@ Module.register("MMM-homeassistant-sensors", {
 					// Sets the icon defined in the config specified value will give specified icon.
 				    if (sensordata[0] === key) {
 						if (!sensordata[2][key].includes("/")) {
-							newCell.className = "ha-icon";
+							newCell.className = "ha-icon bright";
 							iconsinline = document.createElement("i");
 							iconsinline.className = "mdi mdi-" + sensordata[2][key];	
 							break;
@@ -382,7 +382,7 @@ Module.register("MMM-homeassistant-sensors", {
 
 					// If no icon is set by values, the default one will be used.
 					if (iconsinline === "none") {
-						newCell.className = "ha-icon";
+						newCell.className = "ha-icon bright";
 						iconsinline = document.createElement("i");
 						iconsinline.className = "mdi mdi-" + sensordata[2].default;
 					}
@@ -481,7 +481,7 @@ Module.register("MMM-homeassistant-sensors", {
 		// Name
 		column++;
 		newCell = newrow.insertCell(column);
-		newCell.className = "ha-name";
+		newCell.className = "ha-name bright";
 		newText = document.createTextNode(name);
 		newCell.appendChild(newText);
 
