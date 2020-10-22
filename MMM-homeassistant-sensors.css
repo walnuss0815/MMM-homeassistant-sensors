@@ -7,31 +7,36 @@
  *                                                   *
  *****************************************************/
 
-.ha-icon {
-  font-size: 20px;
+.MMM-homeassistant-sensors .symbol {
+  padding-left: 0;
+  padding-right: 10px;
+  font-size: 80%;
+  vertical-align: top;
 }
 
-.ha-img {
+.MMM-homeassistant-sensors .image {
   text-align: right;
   height: 15px;
   width: 15px;
   border-radius: 50%;
 }
 
-.ha-name {
+.MMM-homeassistant-sensors .title {
   text-align: left;
 }
 
-.ha-value {
+.MMM-homeassistant-sensors .value {
+  padding-left: 30px;
   text-align: right;
+  vertical-align: top;
 }
 
-.blinkhigh {
+.MMM-homeassistant-sensors .blinkhigh {
   animation: blinker 3.5s linear infinite;
   color: #ff5555;
 }
 
-.blinklow {
+.MMM-homeassistant-sensors .blinklow {
   animation: blinker 3.5s linear infinite;
   color: #55acee;
 }

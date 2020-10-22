@@ -259,6 +259,7 @@ Module.register("MMM-homeassistant-sensors", {
 		var addblinkhigh = 0;
 		var addblinklow = 0;
 		newrow = document.createElement("tr");
+		iconsinline.className = "normal";
 
 		// Fix the time and date.
 		var thetime = new Date(sensordata[8]);
@@ -338,20 +339,20 @@ Module.register("MMM-homeassistant-sensors", {
 					// Sets the icon defined in the config specified value will give specified icon.
 				    if (sensordata[0] === key) {
 						if (!sensordata[2][key].includes("/")) {
-							newCell.className = "ha-icon light";
+							newCell.className = "symbol light";
 							iconsinline = document.createElement("i");
 							iconsinline.className = "mdi mdi-" + sensordata[2][key];	
 							break;
 						} else {
 							iconsinline = document.createElement("img");
 							iconsinline.src = sensordata[2][key];
-							iconsinline.className = "ha-img";
+							iconsinline.className = "image";
 						}
 					} 
 
 					// If no icon is set by values, the default one will be used.
 					if (iconsinline === "none") {
-						newCell.className = "ha-icon light";
+						newCell.className = "symbol light";
 						iconsinline = document.createElement("i");
 						iconsinline.className = "mdi mdi-" + sensordata[2].default;
 					}
@@ -372,7 +373,7 @@ Module.register("MMM-homeassistant-sensors", {
 					}
 					var iconsinline = document.createElement("img");
 					iconsinline.src = picture;
-					iconsinline.className = "ha-img";
+					iconsinline.className = "image";
 					newCell.appendChild(iconsinline);
 				}
 			}
@@ -448,14 +449,14 @@ Module.register("MMM-homeassistant-sensors", {
 		// Name
 		column++;
 		newCell = newrow.insertCell(column);
-		newCell.className = "ha-name bright";
+		newCell.className = "name bright";
 		newText = document.createTextNode(name);
 		newCell.appendChild(newText);
 
 		// Value
 		column++;
 		newCell = newrow.insertCell(column);
-		newCell.className = "ha-value light";
+		newCell.className = "value light";
 		if (addblinkhigh > 0) {
 			newrow.className += "blinkhigh";
 		}
