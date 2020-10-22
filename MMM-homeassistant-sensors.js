@@ -463,7 +463,14 @@ Module.register("MMM-homeassistant-sensors", {
 		if (addblinklow > 0) {
 			newrow.className += "blinklow";
 		}
-		newText = document.createTextNode(newValue + ' ' + unit);
+		newText = document.createTextNode(newValue);
+		newCell.appendChild(newText);
+
+		// Unit
+		column++;
+		newCell = newrow.insertCell(column);
+		newCell.className = "unit";
+		newText = document.createTextNode(unit);
 		newCell.appendChild(newText);
 
 		return newrow;

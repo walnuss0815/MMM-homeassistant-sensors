@@ -29,6 +29,11 @@
   vertical-align: top;
 }
 
+.MMM-homeassistant-sensors .unit {
+  text-align: right;
+  vertical-align: top;
+}
+
 .MMM-homeassistant-sensors .blinkhigh {
   animation: blinker 3.5s linear infinite;
   color: #ff5555;
