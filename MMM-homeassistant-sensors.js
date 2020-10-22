@@ -488,7 +488,7 @@ Module.register("MMM-homeassistant-sensors", {
 		// Value
 		column++;
 		newCell = newrow.insertCell(column);
-		newCell.className = "ha-value";
+		newCell.className = "ha-value light";
 		if (addblinkhigh > 0) {
 			newrow.className += "blinkhigh";
 		}
@@ -501,7 +501,7 @@ Module.register("MMM-homeassistant-sensors", {
 		// Unit
 		column++;
 		newCell = newrow.insertCell(column);
-		newCell.className = "ha-unit";
+		newCell.className = "ha-unit light";
 		newText = document.createTextNode(unit);
 		newCell.appendChild(newText);
 
