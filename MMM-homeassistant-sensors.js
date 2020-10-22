@@ -469,7 +469,7 @@ Module.register("MMM-homeassistant-sensors", {
 		// Unit
 		column++;
 		newCell = newrow.insertCell(column);
-		newCell.className = "unit";
+		newCell.className = "unit light";
 		newText = document.createTextNode(unit);
 		newCell.appendChild(newText);
 
