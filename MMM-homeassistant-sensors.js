@@ -316,16 +316,7 @@ Module.register("MMM-homeassistant-sensors", {
 					});
 			}
 		}
-		// removes the date from the output table if selected.
-		if (sensordata[6] === false) {
-			datedata = "";
-		}
-
-		// Removes the date from the output table if selected.
-		if (sensordata[7] === false) {
-			timedata = "";
-		}
-		
+	
 		// Removes the unit if set not to be displayed.
 		if (sensordata[15] === false) {
 			unit = "";
@@ -334,28 +325,6 @@ Module.register("MMM-homeassistant-sensors", {
 
 		// Column start point. 
 		var column = -1;
-
-		// Last Date Updated
-		column++;
-		newCell = newrow.insertCell(column);
-		if (datedata !== "") {
-			newCell.className = "ha-date light";
-			newText = document.createTextNode(datedata);
-			newCell.appendChild(newText);
-		} else {
-			newCell.className = "ha-empty";
-		}
-
-		// Last Time Updated
-		column++;
-		newCell = newrow.insertCell(column);
-		if (timedata !== "") {
-			newCell.className = "ha-time light";
-			newText = document.createTextNode(timedata);
-			newCell.appendChild(newText);
-		} else {
-			newCell.className = "ha-empty";
-		}
 
 		// icons
 		column++;
@@ -407,8 +376,6 @@ Module.register("MMM-homeassistant-sensors", {
 					newCell.appendChild(iconsinline);
 				}
 			}
-		} else {
-			newCell.className = "ha-empty";
 		}
 
 		// Replace the "state" with the "value" if set to true in config.
@@ -495,14 +462,7 @@ Module.register("MMM-homeassistant-sensors", {
 		if (addblinklow > 0) {
 			newrow.className += "blinklow";
 		}
-		newText = document.createTextNode(newValue);
-		newCell.appendChild(newText);
-
-		// Unit
-		column++;
-		newCell = newrow.insertCell(column);
-		newCell.className = "ha-unit light";
-		newText = document.createTextNode(unit);
+		newText = document.createTextNode(newValue + ' ' + unit);
 		newCell.appendChild(newText);
 
 		return newrow;

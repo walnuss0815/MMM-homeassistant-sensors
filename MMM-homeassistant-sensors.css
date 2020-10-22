@@ -18,28 +18,12 @@
   border-radius: 50%;
 }
 
-.ha-date {
-  text-align: left;
-}
-
-.ha-time {
-  text-align: left;
-}
-
-.ha-empty {
-  padding: 0;
-}
-
 .ha-name {
   text-align: left;
 }
 
 .ha-value {
   text-align: right;
-}
-
-.ha-unit {
-  text-align: left;
 }
 
 .blinkhigh {
