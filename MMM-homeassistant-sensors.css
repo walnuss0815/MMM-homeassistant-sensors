@@ -27,6 +27,10 @@
   text-align: left;
 }
 
+.ha-empty {
+  padding: 0;
+}
+
 .ha-name {
   text-align: left;
 }

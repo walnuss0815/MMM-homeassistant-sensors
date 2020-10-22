@@ -338,16 +338,24 @@ Module.register("MMM-homeassistant-sensors", {
 		// Last Date Updated
 		column++;
 		newCell = newrow.insertCell(column);
-		newCell.className = "ha-date";
-		newText = document.createTextNode(datedata);
-		newCell.appendChild(newText);
+		if (datedata !== "") {
+			newCell.className = "ha-date";
+			newText = document.createTextNode(datedata);
+			newCell.appendChild(newText);
+		} else {
+			newCell.className = "ha-empty";
+		}
 
 		// Last Time Updated
 		column++;
 		newCell = newrow.insertCell(column);
-		newCell.className = "ha-time";
-		newText = document.createTextNode(timedata);
-		newCell.appendChild(newText);
+		if (timedata !== "") {
+			newCell.className = "ha-time";
+			newText = document.createTextNode(timedata);
+			newCell.appendChild(newText);
+		} else {
+			newCell.className = "ha-empty";
+		}
 
 		// icons
 		column++;
@@ -399,6 +407,8 @@ Module.register("MMM-homeassistant-sensors", {
 					newCell.appendChild(iconsinline);
 				}
 			}
+		} else {
+			newCell.className = "ha-empty";
 		}
 
 		// Replace the "state" with the "value" if set to true in config.
