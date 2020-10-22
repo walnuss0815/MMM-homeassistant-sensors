@@ -22,7 +22,6 @@ Module.register("MMM-homeassistant-sensors", {
 		controlsensorvalue: 'sensor control disabled', // The value the above sensor must have to show this instans of HA-Sensors.
 		noaddress: 'away', // If address field is "undefined" or "null" on the sensor, this string will be displayed instead of the address.
 		debuglogging: false,
-		rowClass: 'small', // small, normal or big
 		values: []
 	},
 	
@@ -44,7 +43,7 @@ Module.register("MMM-homeassistant-sensors", {
 	},
 	getDom: function () {
 		var wrapper = document.createElement("ticker");
-		wrapper.className = "ha-"+this.config.rowClass;
+		wrapper.className = "small";
 		var data = this.result;
 		// For debugging
 		//console.log(data);
