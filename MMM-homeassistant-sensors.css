@@ -32,6 +32,7 @@
 .MMM-homeassistant-sensors .unit {
   text-align: left;
   vertical-align: top;
+  width: 1px;
 }
 
 .MMM-homeassistant-sensors .blinkhigh {
