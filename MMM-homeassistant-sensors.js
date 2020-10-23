@@ -117,7 +117,7 @@ Module.register("MMM-homeassistant-sensors", {
 			icon = confEntity.icon;
 		}
 
-		if (typeof confEntity.replace === 'undefined') {
+		if (typeof confEntity.replace !== 'undefined') {
 			for (var key in confEntity.replace) {
 				if (value === key) {
 					value = confEntity.replace[key];
