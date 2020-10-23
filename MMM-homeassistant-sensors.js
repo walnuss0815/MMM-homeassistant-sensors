@@ -75,7 +75,7 @@ Module.register("MMM-homeassistant-sensors", {
 				});
 
 				if (typeof haEntity !== 'undefined') {
-					tableElement.appendChild(this.addValue(haEntity, entity));
+					tableElement.appendChild(this.addValue(haEntity, confEntity));
 				} else {
 					var error = confEntity.entity + ' not found!';
 					console.error('MMM-homeassistant-sensors ERROR: ', error);
