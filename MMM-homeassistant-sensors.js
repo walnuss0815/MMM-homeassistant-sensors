@@ -155,8 +155,9 @@ Module.register("MMM-homeassistant-sensors", {
 		// Icon
 		column++;
 		newCell = newrow.insertCell(column);
+		newCell.className = "symbol light";
 		if (typeof icon !== 'undefined') {
-			newCell.className = "symbol light";
+			var iconsinline;
 			iconsinline = document.createElement("span");
 			iconsinline.className = "mdi mdi-" + icon;
 			newCell.appendChild(iconsinline);
