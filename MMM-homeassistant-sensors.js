@@ -93,7 +93,7 @@ Module.register("MMM-homeassistant-sensors", {
 
 	addValue: function (haEntity, confEntity) {
 		var value, unit;
-		if (typeof confEntity.attribute === 'undefined') {
+		if (typeof confEntity.attribute !== 'undefined') {
 			value = haEntity.attributes[confEntity.attribute];
 			unit = '';
 		} else {
