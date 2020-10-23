@@ -106,15 +106,6 @@ Module.register("MMM-homeassistant-sensors", {
 			}
 		}
 
-		if (typeof confEntity.replace === 'undefined') {
-			for (var key in confEntity.replace) {
-				if (value === key) {
-					value = confEntity.replace[key];
-					break;
-				}
-			}
-		}
-
 		var icon;
 		for (var key in confEntity.icons) {
 			if (value === key) {
@@ -124,6 +115,15 @@ Module.register("MMM-homeassistant-sensors", {
 		}
 		if (typeof icon === 'undefined') {
 			icon = confEntity.icon;
+		}
+
+		if (typeof confEntity.replace === 'undefined') {
+			for (var key in confEntity.replace) {
+				if (value === key) {
+					value = confEntity.replace[key];
+					break;
+				}
+			}
 		}
 
 		var name;
