@@ -73,7 +73,7 @@ The configuration can be very simpel, from just displaying a simple value from a
 | `highThreshold`      | `number` | You can specify a number, if the value/state of the sensor is higher then this the row will blink and turn red.|
 | `lowThreshold`       | `number` | You can specify a number, if the value/state of the sensor is lower then this the row will blink and turn blue.|
 | `icons`              | `[array{}]` | Define specific icons for spesific values/states (see example below). You can use the icon names from the: [MaterialDesignIcons](https://materialdesignicons.com/).|
-| `defaultIcon`        | `string` | Applies if no icon of icons matches. You can use the icon names from the: [MaterialDesignIcons](https://materialdesignicons.com/).|
+| `icon`               | `string` | Applies if no icon of icons matches. You can use the icon names from the: [MaterialDesignIcons](https://materialdesignicons.com/).|
 
 ### Template options
 - Possibility to use %v% in the name and/or unit strings to get the "state" string from the sensor.

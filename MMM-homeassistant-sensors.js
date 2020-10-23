@@ -113,7 +113,7 @@ Module.register("MMM-homeassistant-sensors", {
 			}
 		}
 		if (typeof icon === 'undefined') {
-			icon = confEntity.defaultIcon;
+			icon = confEntity.icon;
 		}
 
 		var name;
