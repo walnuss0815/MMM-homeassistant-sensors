@@ -99,8 +99,8 @@ Module.register("MMM-homeassistant-sensors", {
 		} else {
 			state = haEntity.state;
 
-			if (typeof haEntity.unit_of_measurement !== 'undefined') {
-				unit = haEntity.unit_of_measurement;
+			if (typeof haEntity.attributes.unit_of_measurement !== 'undefined') {
+				unit = haEntity.attributes.unit_of_measurement;
 			} else {
 				unit = '';
 			}
@@ -135,6 +135,9 @@ Module.register("MMM-homeassistant-sensors", {
 			blinkLow = (value > confEntity.lowThreshold);
 		}
 
+		var newrow,
+			newText,
+			newCell;
 
 		newrow = document.createElement("tr");
 		newrow.className = "normal";
