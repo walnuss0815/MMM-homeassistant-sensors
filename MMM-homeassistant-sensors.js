@@ -119,8 +119,8 @@ Module.register("MMM-homeassistant-sensors", {
 		var name;
 		if (typeof confEntity.name !== 'undefined') {
 			name = confEntity.name;
-		} else if (typeof haEntity.friendly_name !== 'undefined') {
-			name = haEntity.friendly_name;
+		} else if (typeof haEntity.attributes.friendly_name !== 'undefined') {
+			name = haEntity.attributes.friendly_name;
 		} else {
 			name = haEntity.entity_id;
 		}
