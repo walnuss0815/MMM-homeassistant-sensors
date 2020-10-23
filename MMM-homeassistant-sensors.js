@@ -106,10 +106,20 @@ Module.register("MMM-homeassistant-sensors", {
 			}
 		}
 
+		if (typeof confEntity.replace === 'undefined') {
+			for (var key in confEntity.replace) {
+				if (value === key) {
+					value = confEntity.replace[key];
+					break;
+				}
+			}
+		}
+
 		var icon;
 		for (var key in confEntity.icons) {
 			if (value === key) {
 				icon = confEntity.icons[key];
+				break;
 			}
 		}
 		if (typeof icon === 'undefined') {
