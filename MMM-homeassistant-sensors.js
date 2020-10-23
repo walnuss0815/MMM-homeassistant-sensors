@@ -69,7 +69,7 @@ Module.register("MMM-homeassistant-sensors", {
 			var tableElement = document.createElement("table");
 			var values = this.config.values;
 
-			for (var confEntity of entities) {
+			for (var confEntity of this.config.entities) {
 				var haEntity = data.find(e => {
 					return e.entity_id === confEntity.entity
 				});
@@ -109,7 +109,7 @@ Module.register("MMM-homeassistant-sensors", {
 		var icon;
 		for (var key in confEntity.icons) {
 			if (value === key) {
-				icon = icons[key];
+				icon = confEntity.icons[key];
 			}
 		}
 		if (typeof icon === 'undefined') {
