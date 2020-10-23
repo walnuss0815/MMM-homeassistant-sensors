@@ -92,12 +92,12 @@ Module.register("MMM-homeassistant-sensors", {
 	},
 
 	addValue: function (haEntity, confEntity) {
-		var state, unit;
+		var value, unit;
 		if (typeof confEntity.attribute === 'undefined') {
-			state = haEntity.attributes[confEntity.attribute];
+			value = haEntity.attributes[confEntity.attribute];
 			unit = '';
 		} else {
-			state = haEntity.state;
+			value = haEntity.state;
 
 			if (typeof haEntity.attributes.unit_of_measurement !== 'undefined') {
 				unit = haEntity.attributes.unit_of_measurement;
