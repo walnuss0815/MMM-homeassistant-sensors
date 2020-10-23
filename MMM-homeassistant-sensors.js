@@ -259,7 +259,7 @@ Module.register("MMM-homeassistant-sensors", {
 		var addblinkhigh = 0;
 		var addblinklow = 0;
 		newrow = document.createElement("tr");
-		newrow.className = "normal";
+		newrow.className = "normal ";
 
 		// Fix the time and date.
 		var thetime = new Date(sensordata[8]);
