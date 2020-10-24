@@ -198,9 +198,9 @@ Module.register("MMM-homeassistant-sensors", {
 		newrow = document.createElement("tr");
 		newrow.className = "normal";
 
-		if (blink === blinkMode.high) {
+		if (blink === this.blinkMode.high) {
 			newrow.className += " blinkhigh";
-		} else if (blink === blinkMode.low) {
+		} else if (blink === this.blinkMode.low) {
 			newrow.className += " blinklow";
 		}
 
