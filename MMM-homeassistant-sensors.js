@@ -126,7 +126,7 @@ Module.register("MMM-homeassistant-sensors", {
 		}
 
 		if (!isNaN(value)) {
-			value = Math.round((value + Number.EPSILON) * 100) / 100;
+			value = Math.round(value * 100) / 100;
 		}
 
 
