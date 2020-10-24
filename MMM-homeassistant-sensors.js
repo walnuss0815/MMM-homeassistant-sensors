@@ -18,6 +18,11 @@ Module.register("MMM-homeassistant-sensors", {
 		entities: []
 	},
 
+	blinkMode = {
+		low: 'l',
+		high: 'h'
+	},
+
 	getStyles: function () {
 		return ["modules/MMM-homeassistant-sensors/node_modules/@mdi/font/css/materialdesignicons.min.css", "MMM-homeassistant-sensors.css"];
 	},
@@ -91,83 +96,100 @@ Module.register("MMM-homeassistant-sensors", {
 		return wrapper;
 	},
 
-	addValue: function (haEntity, confEntity) {
-		var value, unit;
+	getValue: function (haEntity, confEntity) {
 		if (typeof confEntity.attribute !== 'undefined') {
 			if (typeof haEntity.attributes[confEntity.attribute] !== 'undefined') {
-				value = haEntity.attributes[confEntity.attribute];
-				unit = '';
+				return haEntity.attributes[confEntity.attribute];
 			} else {
 				var warn = confEntity.entity + ' has no attribute ' + confEntity.attribute + '!';
 				console.warn('MMM-homeassistant-sensors WARN: ', warn);
-
-				value = haEntity.state;
-
-				if (typeof haEntity.attributes.unit_of_measurement !== 'undefined') {
-					unit = haEntity.attributes.unit_of_measurement;
-				} else {
-					unit = '';
-				}
-			}
-		} else {
-			value = haEntity.state;
-
-			if (typeof haEntity.attributes.unit_of_measurement !== 'undefined') {
-				unit = haEntity.attributes.unit_of_measurement;
-			} else {
-				unit = '';
 			}
 		}
 
+		return haEntity.state;
+	},
+
+	getUnit: function (haEntity) {
+		if (typeof haEntity.attributes.unit_of_measurement !== 'undefined') {
+			return haEntity.attributes.unit_of_measurement;
+		}
+
+		return '';
+	},
+
+	getName: function (haEntity, confEntity) {
+		if (typeof confEntity.name !== 'undefined') {
+			return confEntity.name;
+		} else if (typeof haEntity.attributes.friendly_name !== 'undefined') {
+			return haEntity.attributes.friendly_name;
+		}
+
+		return haEntity.entity_id;
+	},
+
+	getIcon: function (value, confEntity) {
+		for (var key in confEntity.icons) {
+			if (value === key) {
+				return confEntity.icons[key];
+			}
+		}
+
+		return confEntity.icon;
+	},
+
+	getBlink: function (value, confEntity) {
+		if (!isNaN(confEntity.highThreshold)) {
+			if (value > confEntity.highThreshold) {
+				return blinkMode.high;
+			}
+		}
+
+		if (!isNaN(confEntity.lowThreshold)) {
+			if (value > confEntity.lowThreshold) {
+				return blinkMode.low
+			}
+		}
+	},
+
+	devideValue: function (value, confEntity) {
 		if (typeof confEntity.devider !== 'undefined') {
 			if (!isNaN(confEntity.devider) && !isNaN(value)) {
-				value /= confEntity.devider;
+				return value / confEntity.devider;
 			}
 		}
 
+		return value;
+	},
+
+	roundValue: function (value) {
 		if (!isNaN(value)) {
 			value = (Math.round(value * 10) / 10).toFixed(1);
 		}
 
+		return value;
+	},
 
-		var icon;
-		for (var key in confEntity.icons) {
-			if (value === key) {
-				icon = confEntity.icons[key];
-				break;
-			}
-		}
-		if (typeof icon === 'undefined') {
-			icon = confEntity.icon;
-		}
-
+	replaceValue: function (value, confEntity) {
 		if (typeof confEntity.replace !== 'undefined') {
 			for (var key in confEntity.replace) {
 				if (value === key) {
-					value = confEntity.replace[key];
-					break;
+					return confEntity.replace[key];
 				}
 			}
 		}
 
-		var name;
-		if (typeof confEntity.name !== 'undefined') {
-			name = confEntity.name;
-		} else if (typeof haEntity.attributes.friendly_name !== 'undefined') {
-			name = haEntity.attributes.friendly_name;
-		} else {
-			name = haEntity.entity_id;
-		}
+		return value;
+	},
 
-		var blinkHigh = false;
-		if (!isNaN(confEntity.highThreshold)) {
-			blinkHigh = (value > confEntity.highThreshold);
-		}
+	addValue: function (haEntity, confEntity) {
+		var value = this.getValue(haEntity, confEntity);
+		value = this.devideValue(value, confEntity);
+		value = this.roundValue(value, confEntity);
 
-		var blinkLow = false;
-		if (!isNaN(confEntity.lowThreshold)) {
-			blinkLow = (value > confEntity.lowThreshold);
-		}
+		var icon = this.getIcon(value, confEntity);
+		var blink = this.getBlink(value, confEntity);
+
+		value = this.replaceValue(value, confEntity);
 
 		var newrow,
 			newText,
@@ -176,10 +198,9 @@ Module.register("MMM-homeassistant-sensors", {
 		newrow = document.createElement("tr");
 		newrow.className = "normal";
 
-		if (blinkHigh) {
+		if (blink === blinkMode.high) {
 			newrow.className += " blinkhigh";
-		}
-		if (blinkLow) {
+		} else if (blink === blinkMode.low) {
 			newrow.className += " blinklow";
 		}
 
@@ -201,7 +222,7 @@ Module.register("MMM-homeassistant-sensors", {
 		column++;
 		newCell = newrow.insertCell(column);
 		newCell.className = "name bright";
-		newText = document.createTextNode(name);
+		newText = document.createTextNode(this.getName(haEntity, confEntity));
 		newCell.appendChild(newText);
 
 		// Value
@@ -215,7 +236,7 @@ Module.register("MMM-homeassistant-sensors", {
 		column++;
 		newCell = newrow.insertCell(column);
 		newCell.className = "unit light";
-		newText = document.createTextNode(unit);
+		newText = document.createTextNode(this.getUnit(haEntity, confEntity));
 		newCell.appendChild(newText);
 
 		return newrow;
