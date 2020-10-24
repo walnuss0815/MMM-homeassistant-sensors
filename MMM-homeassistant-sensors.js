@@ -18,7 +18,7 @@ Module.register("MMM-homeassistant-sensors", {
 		entities: []
 	},
 
-	blinkMode = {
+	blinkMode: {
 		low: 'l',
 		high: 'h'
 	},
