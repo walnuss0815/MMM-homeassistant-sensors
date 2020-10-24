@@ -94,8 +94,21 @@ Module.register("MMM-homeassistant-sensors", {
 	addValue: function (haEntity, confEntity) {
 		var value, unit;
 		if (typeof confEntity.attribute !== 'undefined') {
-			value = haEntity.attributes[confEntity.attribute];
-			unit = '';
+			if (typeof haEntity.attributes[confEntity.attribute] !== 'undefined') {
+				value = haEntity.attributes[confEntity.attribute];
+				unit = '';
+			} else {
+				var warn = confEntity.entity + ' has no attribute ' + confEntity.attribute + '!';
+				console.warn('MMM-homeassistant-sensors WARN: ', warn);
+
+				value = haEntity.state;
+
+				if (typeof haEntity.attributes.unit_of_measurement !== 'undefined') {
+					unit = haEntity.attributes.unit_of_measurement;
+				} else {
+					unit = '';
+				}
+			}
 		} else {
 			value = haEntity.state;
 
