@@ -120,11 +120,8 @@ Module.register("MMM-homeassistant-sensors", {
 		}
 
 		if (typeof confEntity.devider !== 'undefined') {
-			if (!isNaN(confEntity.devider)) {
+			if (!isNaN(confEntity.devider) && !isNaN(value)) {
 				value /= confEntity.devider;
-			} else {
-				var error = confEntity.entity + ' devider ' + confEntity.devider + ' is not a number!';
-				console.error('MMM-homeassistant-sensors ERROR: ', error);
 			}
 		}
 
