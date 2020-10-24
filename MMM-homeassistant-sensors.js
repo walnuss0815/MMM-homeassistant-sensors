@@ -126,7 +126,7 @@ Module.register("MMM-homeassistant-sensors", {
 		}
 
 		if (!isNaN(value)) {
-			value = Math.round(value * 100) / 100;
+			value = value.toFixed(2);
 		}
 
 
