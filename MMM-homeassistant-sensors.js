@@ -140,13 +140,13 @@ Module.register("MMM-homeassistant-sensors", {
 	getBlink: function (value, confEntity) {
 		if (!isNaN(confEntity.highThreshold)) {
 			if (value > confEntity.highThreshold) {
-				return blinkMode.high;
+				return this.blinkMode.high;
 			}
 		}
 
 		if (!isNaN(confEntity.lowThreshold)) {
 			if (value > confEntity.lowThreshold) {
-				return blinkMode.low
+				return this.blinkMode.low
 			}
 		}
 	},
