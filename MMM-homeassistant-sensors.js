@@ -119,6 +119,15 @@ Module.register("MMM-homeassistant-sensors", {
 			}
 		}
 
+		if (typeof confEntity.devider !== 'undefined') {
+			if (!isNaN(confEntity.devider)) {
+				value /= confEntity.devider;
+			} else {
+				var error = confEntity.entity + ' devider ' + confEntity.devider + ' is not a number!';
+				console.error('MMM-homeassistant-sensors ERROR: ', error);
+			}
+		}
+
 		var icon;
 		for (var key in confEntity.icons) {
 			if (value === key) {

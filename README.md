@@ -75,6 +75,7 @@ The configuration can be very simpel, from just displaying a simple value from a
 | `icons`              | `[array{}]` | Define specific icons for spesific values/states (see example below). You can use the icon names from the: [MaterialDesignIcons](https://materialdesignicons.com/).|
 | `icon`               | `string` | Applies if no icon of icons matches. You can use the icon names from the: [MaterialDesignIcons](https://materialdesignicons.com/).|
 | `replace`            | `[array{}]` | Define specific values/states that will be owerriden by the specified values.|
+| `devider`            | `number` | You can specify a number (or calculation) that the value should be devided by.|
 
 ### Template options
 - Possibility to use %v% in the name and/or unit strings to get the "state" string from the sensor.
