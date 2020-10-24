@@ -125,6 +125,11 @@ Module.register("MMM-homeassistant-sensors", {
 			}
 		}
 
+		if (!isNaN(value)) {
+			value = Math.round((value + Number.EPSILON) * 100) / 100;
+		}
+
+
 		var icon;
 		for (var key in confEntity.icons) {
 			if (value === key) {
